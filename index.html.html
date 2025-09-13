@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة كاونت داون</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #e0f7fa, #80deea);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      color: #004d60;
+      text-align: center;
+    }
+    .countdown {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .time {
+      font-size: 2.5em;
+      letter-spacing: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown">
+    <h1>العد التنازلي للحدث</h1>
+    <div class="time" id="countdown"></div>
+  </div>
+
+  <script>
+    // حدد تاريخ النهاية (مثلاً: 1 أكتوبر 2025)
+    var endDate = new Date("Oct 1, 2025 00:00:00").getTime();
+
+    var timer = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = endDate - now;
+
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        days + " يوم " + hours + " ساعة " + minutes + " دقيقة " + seconds + " ثانية ";
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "انتهى الوقت!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
